@@ -5,67 +5,67 @@
 
 
 int main() {
-    // Создание матрицы 3x3 с заданными значениями
+    // РЎРѕР·РґР°РЅРёРµ РјР°С‚СЂРёС†С‹ 3x3 СЃ Р·Р°РґР°РЅРЅС‹РјРё Р·РЅР°С‡РµРЅРёСЏРјРё
     std::vector<std::vector<int>> data1 = { {1, 2, 3},
                                            {4, 5, 6},
                                            {7, 8, 9} };
     Matrix<int> matrix1(data1);
 
-    // Создание матрицы 3x3 с заданными значениями
+    // РЎРѕР·РґР°РЅРёРµ РјР°С‚СЂРёС†С‹ 3x3 СЃ Р·Р°РґР°РЅРЅС‹РјРё Р·РЅР°С‡РµРЅРёСЏРјРё
     std::vector<std::vector<int>> data2 = { {1, 2, 3},
                                            {4, 5, 6},
                                            {7, 8, 9} };
     Matrix<int> matrix2(data2);
 
-    // Вывод матриц на экран
+    // Р’С‹РІРѕРґ РјР°С‚СЂРёС† РЅР° СЌРєСЂР°РЅ
     std::cout << "Matrix 1:" << std::endl;
     std::cout << matrix1;
 
     std::cout << "\nMatrix 2:" << std::endl;
     std::cout << matrix2;
 
-    // Число строк
+    // Р§РёСЃР»Рѕ СЃС‚СЂРѕРє
     std::cout << "\nMatrix1 rows:";
     std::cout << matrix1.get_rows();
 
-    // Число столбцов
+    // Р§РёСЃР»Рѕ СЃС‚РѕР»Р±С†РѕРІ
     std::cout << "\nMatrix1 cols:";
     std::cout << matrix1.get_cols();
 
-    // Сравнение матриц
+    // РЎСЂР°РІРЅРµРЅРёРµ РјР°С‚СЂРёС†
     if (matrix1 == matrix2) std::cout << "\nMatrix 1 = Matrix 2" << std::endl;
     else std::cout << "\nMatrix 1 != Matrix 2" << std::endl;
 
-    // Сложение матриц
+    // РЎР»РѕР¶РµРЅРёРµ РјР°С‚СЂРёС†
     Matrix<int> sum = matrix1 + matrix2;
     std::cout << "\nMatrix 1 + Matrix 2:" << std::endl;
     std::cout << sum;
 
-    // Вычитание матриц
+    // Р’С‹С‡РёС‚Р°РЅРёРµ РјР°С‚СЂРёС†
     Matrix<int> sub = matrix1 - matrix2;
     std::cout << "\nMatrix 1 - Matrix 2:" << std::endl;
     std::cout << sub;
 
-    // Умножение матриц
+    // РЈРјРЅРѕР¶РµРЅРёРµ РјР°С‚СЂРёС†
     Matrix<int> mul = matrix1 * matrix2;
     std::cout << "\nMatrix 1 * Matrix 2:" << std::endl;
     std::cout << mul;
 
-    // Отрицание матриц
+    // РћС‚СЂРёС†Р°РЅРёРµ РјР°С‚СЂРёС†
     std::cout << "\n-Matrix 1:" << std::endl;
     std::cout << -matrix1;
 
-    // Транспонирование матрицы
+    // РўСЂР°РЅСЃРїРѕРЅРёСЂРѕРІР°РЅРёРµ РјР°С‚СЂРёС†С‹
     Matrix<int> tr = matrix1.transpose();
     std::cout << "\nTransposition Matrix 1:" << std::endl;
     std::cout << tr;
 
-    // Конкатенация матриц по горизонтали
+    // РљРѕРЅРєР°С‚РµРЅР°С†РёСЏ РјР°С‚СЂРёС† РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё
     Matrix<int> hor = matrix1.horizontal_concatenate(matrix2);
     std::cout << "\nConcatenate Matrix 1 and Matrix 2 horizontally:" << std::endl;
     std::cout << hor;
 
-    // Конкатенация матриц по вертикали
+    // РљРѕРЅРєР°С‚РµРЅР°С†РёСЏ РјР°С‚СЂРёС† РїРѕ РІРµСЂС‚РёРєР°Р»Рё
     Matrix<int> ver = matrix1.vertical_concatenate(matrix2);
     std::cout << "\nConcatenate Matrix 1 and Matrix 2 vertically:" << std::endl;
     std::cout << ver;    

@@ -42,10 +42,16 @@ public:
     }
 
     T& operator()(size_t i, size_t j) { // Доступ к элементу (i, j)
+        if (i >= rows || j >= cols) {
+            throw std::runtime_error("Index out of range");
+        }
         return data[i][j];
     }
 
     const T& operator()(size_t i, size_t j) const { // Доступ к элементу (i, j) для константной матрицы
+        if (i >= rows || j >= cols) {
+            throw std::runtime_error("Index out of range");
+        }
         return data[i][j];
     }  
 
@@ -137,7 +143,7 @@ public:
         return result;
     }
 
-    Matrix<T> submatrix(size_t row, size_t col, size_t rows, size_t cols) const { // Получение подматрицы, начиная с позиции (row, col) и размерами (rows, cols)
+    Matrix<T> submatrix(size_t row, size_t col, size_t rows, size_t cols) const { // Получение подматрицы, начиная с позиции (row, col) и размерами (rows, cols)        
         Matrix<T> result(rows, cols);
         for (std::size_t i = 0; i < rows; i++) {
             for (std::size_t j = 0; j < cols; j++) {
@@ -161,6 +167,9 @@ public:
     }
 
     Matrix<T> horizontal_concatenate(const Matrix<T>& other) const { // Конкатенация матриц по горизонтали
+        if (rows != other.rows) {
+            throw std::runtime_error("Size error");
+        }
         Matrix<T> result(rows, cols + other.cols);
         for (std::size_t i = 0; i < rows; i++) {
             for (std::size_t j = 0; j < cols + other.cols; j++) {
@@ -176,6 +185,9 @@ public:
     }
 
     Matrix<T> vertical_concatenate(const Matrix<T>& other) const { // Конкатенация матриц по вертикали
+        if (cols != other.cols) {
+            throw std::runtime_error("Size error");
+        }
         Matrix<T> result(rows + other.rows, cols);
         for (std::size_t i = 0; i < rows + other.rows; i++) {
             for (std::size_t j = 0; j < cols; j++) {

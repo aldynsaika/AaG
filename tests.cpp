@@ -2,7 +2,7 @@
 #include "time.h"
 
 int main() {
-    // Генерация матрицы А случайными значениями
+    // Р“РµРЅРµСЂР°С†РёСЏ РјР°С‚СЂРёС†С‹ Рђ СЃР»СѓС‡Р°Р№РЅС‹РјРё Р·РЅР°С‡РµРЅРёСЏРјРё
     srand(time(0));
     Matrix <Fp<3>> A(4, 4); 
     for (size_t i = 0; i < A.get_rows(); ++i) {
@@ -10,53 +10,53 @@ int main() {
             A(i, j) = rand();
         }
     }
-    // Выводим матрицу А
+    // Р’С‹РІРѕРґРёРј РјР°С‚СЂРёС†Сѓ Рђ
     std::cout << A << std::endl;
     
-    // Создаем объект класса Fp
+    // РЎРѕР·РґР°РµРј РѕР±СЉРµРєС‚ РєР»Р°СЃСЃР° Fp
     Fp<3> a = 8;
     Fp<3> b = 1;
 
-    // Вывод а
+    // Р’С‹РІРѕРґ Р°
     std::cout << "a = ";
     std::cout << a << std::endl;
 
-    // Вывод b
+    // Р’С‹РІРѕРґ b
     std::cout << "b = ";
     std::cout << b << std::endl;
 
-    // Вывод деления а и b
+    // Р’С‹РІРѕРґ РґРµР»РµРЅРёСЏ Р° Рё b
     std::cout << "a / b = ";
     std::cout << a / b << std::endl;
 
-    // Вывод суммы а и b
+    // Р’С‹РІРѕРґ СЃСѓРјРјС‹ Р° Рё b
     std::cout << "a + b = ";
     std::cout << a + b << std::endl;
 
-    // Вывод разности а и b
+    // Р’С‹РІРѕРґ СЂР°Р·РЅРѕСЃС‚Рё Р° Рё b
     std::cout << "a - b = ";
     std::cout << a - b << std::endl;
 
-    // Вывод отрицания а
+    // Р’С‹РІРѕРґ РѕС‚СЂРёС†Р°РЅРёСЏ Р°
     std::cout << "-a = ";
     std::cout << -a << std::endl;
 
     std::cout << '\n';
 
-    // Создаем объект класса HammingCode
+    // РЎРѕР·РґР°РµРј РѕР±СЉРµРєС‚ РєР»Р°СЃСЃР° HammingCode
     HammingCode<5> hammingCode(3); // p=5, m=3
 
-    // Получаем матрицу H
+    // РџРѕР»СѓС‡Р°РµРј РјР°С‚СЂРёС†Сѓ H
     Matrix<Fp<5>> matrixH = hammingCode.get_H();
 
-    // Выводим матрицу H
+    // Р’С‹РІРѕРґРёРј РјР°С‚СЂРёС†Сѓ H
     std::cout << "Matrix H:" << std::endl;
     std::cout << matrixH;
 
-    // Получаем матрицу G
+    // РџРѕР»СѓС‡Р°РµРј РјР°С‚СЂРёС†Сѓ G
     Matrix<Fp<5>> matrixG = hammingCode.get_G();
 
-    // Выводим матрицу G
+    // Р’С‹РІРѕРґРёРј РјР°С‚СЂРёС†Сѓ G
     std::cout << "Matrix G:" << std::endl;
     std::cout << matrixG;
 

@@ -1,74 +1,64 @@
-#include <iostream>
-#include <iomanip>
-#include <vector>
-#include "Matrix.hpp"
-
+#include "HammingCode.hpp" 
+#include "time.h"
 
 int main() {
-    // РЎРѕР·РґР°РЅРёРµ РјР°С‚СЂРёС†С‹ 3x3 СЃ Р·Р°РґР°РЅРЅС‹РјРё Р·РЅР°С‡РµРЅРёСЏРјРё
-    std::vector<std::vector<int>> data1 = { {1, 2, 3},
-                                           {4, 5, 6},
-                                           {7, 8, 9} };
-    Matrix<int> matrix1(data1);
+    // Генерация матрицы А случайными значениями
+    srand(time(0));
+    Matrix <Fp<3>> A(4, 4); 
+    for (size_t i = 0; i < A.get_rows(); ++i) {
+        for (size_t j = 0; j < A.get_cols(); ++j) {
+            A(i, j) = rand();
+        }
+    }
+    // Выводим матрицу А
+    std::cout << A << std::endl;
+    
+    // Создаем объект класса Fp
+    Fp<3> a = 8;
+    Fp<3> b = 1;
 
-    // РЎРѕР·РґР°РЅРёРµ РјР°С‚СЂРёС†С‹ 3x3 СЃ Р·Р°РґР°РЅРЅС‹РјРё Р·РЅР°С‡РµРЅРёСЏРјРё
-    std::vector<std::vector<int>> data2 = { {1, 2, 3},
-                                           {4, 5, 6},
-                                           {7, 8, 9} };
-    Matrix<int> matrix2(data2);
+    // Вывод а
+    std::cout << "a = ";
+    std::cout << a << std::endl;
 
-    // Р’С‹РІРѕРґ РјР°С‚СЂРёС† РЅР° СЌРєСЂР°РЅ
-    std::cout << "Matrix 1:" << std::endl;
-    std::cout << matrix1;
+    // Вывод b
+    std::cout << "b = ";
+    std::cout << b << std::endl;
 
-    std::cout << "\nMatrix 2:" << std::endl;
-    std::cout << matrix2;
+    // Вывод деления а и b
+    std::cout << "a / b = ";
+    std::cout << a / b << std::endl;
 
-    // Р§РёСЃР»Рѕ СЃС‚СЂРѕРє
-    std::cout << "\nMatrix1 rows:";
-    std::cout << matrix1.get_rows();
+    // Вывод суммы а и b
+    std::cout << "a + b = ";
+    std::cout << a + b << std::endl;
 
-    // Р§РёСЃР»Рѕ СЃС‚РѕР»Р±С†РѕРІ
-    std::cout << "\nMatrix1 cols:";
-    std::cout << matrix1.get_cols();
+    // Вывод разности а и b
+    std::cout << "a - b = ";
+    std::cout << a - b << std::endl;
 
-    // РЎСЂР°РІРЅРµРЅРёРµ РјР°С‚СЂРёС†
-    if (matrix1 == matrix2) std::cout << "\nMatrix 1 = Matrix 2" << std::endl;
-    else std::cout << "\nMatrix 1 != Matrix 2" << std::endl;
+    // Вывод отрицания а
+    std::cout << "-a = ";
+    std::cout << -a << std::endl;
 
-    // РЎР»РѕР¶РµРЅРёРµ РјР°С‚СЂРёС†
-    Matrix<int> sum = matrix1 + matrix2;
-    std::cout << "\nMatrix 1 + Matrix 2:" << std::endl;
-    std::cout << sum;
+    std::cout << '\n';
 
-    // Р’С‹С‡РёС‚Р°РЅРёРµ РјР°С‚СЂРёС†
-    Matrix<int> sub = matrix1 - matrix2;
-    std::cout << "\nMatrix 1 - Matrix 2:" << std::endl;
-    std::cout << sub;
+    // Создаем объект класса HammingCode
+    HammingCode<5> hammingCode(3); // p=5, m=3
 
-    // РЈРјРЅРѕР¶РµРЅРёРµ РјР°С‚СЂРёС†
-    Matrix<int> mul = matrix1 * matrix2;
-    std::cout << "\nMatrix 1 * Matrix 2:" << std::endl;
-    std::cout << mul;
+    // Получаем матрицу H
+    Matrix<Fp<5>> matrixH = hammingCode.get_H();
 
-    // РћС‚СЂРёС†Р°РЅРёРµ РјР°С‚СЂРёС†
-    std::cout << "\n-Matrix 1:" << std::endl;
-    std::cout << -matrix1;
+    // Выводим матрицу H
+    std::cout << "Matrix H:" << std::endl;
+    std::cout << matrixH;
 
-    // РўСЂР°РЅСЃРїРѕРЅРёСЂРѕРІР°РЅРёРµ РјР°С‚СЂРёС†С‹
-    Matrix<int> tr = matrix1.transpose();
-    std::cout << "\nTransposition Matrix 1:" << std::endl;
-    std::cout << tr;
+    // Получаем матрицу G
+    Matrix<Fp<5>> matrixG = hammingCode.get_G();
 
-    // РљРѕРЅРєР°С‚РµРЅР°С†РёСЏ РјР°С‚СЂРёС† РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё
-    Matrix<int> hor = matrix1.horizontal_concatenate(matrix2);
-    std::cout << "\nConcatenate Matrix 1 and Matrix 2 horizontally:" << std::endl;
-    std::cout << hor;
-
-    // РљРѕРЅРєР°С‚РµРЅР°С†РёСЏ РјР°С‚СЂРёС† РїРѕ РІРµСЂС‚РёРєР°Р»Рё
-    Matrix<int> ver = matrix1.vertical_concatenate(matrix2);
-    std::cout << "\nConcatenate Matrix 1 and Matrix 2 vertically:" << std::endl;
-    std::cout << ver;    
+    // Выводим матрицу G
+    std::cout << "Matrix G:" << std::endl;
+    std::cout << matrixG;
 
     return 0;
 }

@@ -5,37 +5,37 @@
 template<int p>
 class Fp {
 public:
-    Fp(int x = 0) : value(x% p) { // Конструктор
+    Fp(int x = 0) : value(x% p) { // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
         if (x < 0)
             value += p;
     };
 
-    int val() const {  // Возвращает значение элемента поля
+    int val() const {  // Р’РѕР·РІСЂР°С‰Р°РµС‚ Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РїРѕР»СЏ
         return value;
     }; 
 
-    Fp<p>& operator=(int x) {  // Операция присваивания от целого числа
+    Fp<p>& operator=(int x) {  // РћРїРµСЂР°С†РёСЏ РїСЂРёСЃРІР°РёРІР°РЅРёСЏ РѕС‚ С†РµР»РѕРіРѕ С‡РёСЃР»Р°
         value = x % p;
         if (x < 0)
             value += p;
         return *this;
     }; 
 
-    Fp<p> operator+(const Fp<p>& other) const {  // Операция сложения
+    Fp<p> operator+(const Fp<p>& other) const {  // РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ
         return (value + other.value) % p;
     }; 
 
-    Fp<p> operator-(const Fp<p>& other) const {  // Операция вычитания
+    Fp<p> operator-(const Fp<p>& other) const {  // РћРїРµСЂР°С†РёСЏ РІС‹С‡РёС‚Р°РЅРёСЏ
         if (value - other.value < 0)
             return (value - other.value) % p + p;
         else
             return (value - other.value) % p;
     }; 
-    Fp<p> operator*(const Fp<p>& other) const {  // Операция умножения
+    Fp<p> operator*(const Fp<p>& other) const {  // РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ
         return (value * other.value) % p;
     }; 
 
-    Fp<p> operator/(const Fp<p>& other) const {  // Операция деления
+    Fp<p> operator/(const Fp<p>& other) const {  // РћРїРµСЂР°С†РёСЏ РґРµР»РµРЅРёСЏ
         Fp<p> reverse = 0;
         int n = other.value;
         for (int i = 0; i < p; i++) {
@@ -47,45 +47,45 @@ public:
         return *this * reverse;
     }; 
 
-    Fp<p> operator-() const {  // Операция смены знака
+    Fp<p> operator-() const {  // РћРїРµСЂР°С†РёСЏ СЃРјРµРЅС‹ Р·РЅР°РєР°
         return p - value;
     };
 
-    Fp<p>& operator+=(const Fp<p>& other) {  // Операция += (сложение с присваиванием)
+    Fp<p>& operator+=(const Fp<p>& other) {  // РћРїРµСЂР°С†РёСЏ += (СЃР»РѕР¶РµРЅРёРµ СЃ РїСЂРёСЃРІР°РёРІР°РЅРёРµРј)
         *this = *this + other;
         return *this;
     }; 
 
-    Fp<p>& operator-=(const Fp<p>& other) {  // Операция -= (вычитание с присваиванием)
+    Fp<p>& operator-=(const Fp<p>& other) {  // РћРїРµСЂР°С†РёСЏ -= (РІС‹С‡РёС‚Р°РЅРёРµ СЃ РїСЂРёСЃРІР°РёРІР°РЅРёРµРј)
         *this = *this - other;
         return *this;
     }; 
 
-    Fp<p>& operator*=(const Fp<p>& other) {  // Операция *= (умножение с присваиванием)
+    Fp<p>& operator*=(const Fp<p>& other) {  // РћРїРµСЂР°С†РёСЏ *= (СѓРјРЅРѕР¶РµРЅРёРµ СЃ РїСЂРёСЃРІР°РёРІР°РЅРёРµРј)
         *this = *this * other;
         return *this;
     }; 
 
-    Fp<p>& operator/=(const Fp<p>& other) {  // Операция /= (деление с присваиванием)
+    Fp<p>& operator/=(const Fp<p>& other) {  // РћРїРµСЂР°С†РёСЏ /= (РґРµР»РµРЅРёРµ СЃ РїСЂРёСЃРІР°РёРІР°РЅРёРµРј)
         *this = *this / other;
         return *this;
     }; 
 
-    bool operator==(const Fp<p>& other) const {  // Операция сравнения на равенство
+    bool operator==(const Fp<p>& other) const {  // РћРїРµСЂР°С†РёСЏ СЃСЂР°РІРЅРµРЅРёСЏ РЅР° СЂР°РІРµРЅСЃС‚РІРѕ
         return value == other.value;
     }; 
-    bool operator!=(const Fp<p>& other) const {  // Операция сравнения на неравенство
+    bool operator!=(const Fp<p>& other) const {  // РћРїРµСЂР°С†РёСЏ СЃСЂР°РІРЅРµРЅРёСЏ РЅР° РЅРµСЂР°РІРµРЅСЃС‚РІРѕ
         return !(value == other.value);
     }; 
 
-    // Вывод элемента
+    // Р’С‹РІРѕРґ СЌР»РµРјРµРЅС‚Р°
     template <int Tstream>
     friend std::ostream& operator<<(std::ostream& out, const Fp<Tstream>& el);
 private:
-    int value; // Значение элемента поля
+    int value; // Р—РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РїРѕР»СЏ
 };
 
-// Вывод элемента
+// Р’С‹РІРѕРґ СЌР»РµРјРµРЅС‚Р°
 template <int Tstream>
 std::ostream& operator<<(std::ostream& out, const Fp<Tstream>& el) {
     out << el.val();
